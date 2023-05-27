@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sistema de Gestión de Videojuegos</title>
+             <meta charset="UTF-8">
+             <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+             <meta name="description" content="">
+             <meta name="keywords" content="">
+             <meta name="author" content="">
+             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+             
+             {% load static %}
+
+		<link rel="stylesheet" href="{% static 'CCS/bootstrap.min.css'%}">
+		<link rel="stylesheet" href="{% static 'CCS/font-awesome.min.css'%}">
+		<link rel="stylesheet" href="{% static 'CCS/aos.css'%}">
+		<link rel="stylesheet" href="{% static 'CCS/owl.carousel.min.css'%}">
+		<link rel="stylesheet" href="{% static 'CCS/owl.theme.default.min.css'%}">
+		<link rel="stylesheet" href="{% static 'CCS/templatemo-digital-trend.css'%}">
+
+	</head>
+	
+	<body>
+		<header class = "header">
+			
+
+			<div class="header__title">
+				<h1 class="header__title">
+					Sistema de Gestión de Videojuegos</h1>
+			</div>
+			<nav class="text-right">
+				
+							{% if user.is_authenticated %}
+							<li class="nav-item dropdown">
+								 <div class="dropdown">
+									  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										   {{ user.username }}
+									  </button>
+									  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="/logout_user/">Cerrar Sección</a>
+									  </div>
+									</div>
+		
+							 </li>                    
+							    
+							{% endif %}
+			   
+			 </nav>
+						<br>
+						
+										<a href="/anadir_juego/" class="btn btn-info">InsertarVideojuego</a>
+										<a href="/ControladorUsuario/" class="btn btn-info">Administrar Usuario</a>
+										<a href="/ControladorSolicitud/" class="btn btn-info">Administrar Solicitudes</a>
+										<a href="/GenerarReport/" class="btn btn-info">Generar Reporte</a>
+									
+						
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="/logout_user/" >Cerrar Sección</a>
+						</div>
+					</div>
+					
+                  
+                         
+                  
+				</ul>
+			</div>
+		</header>
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+
+			.header {
+				background-color: #333;
+				color: #fff;
+				padding: 22px;
+			}
+			
+			.header__title {
+				font-size: 36px;
+				margin: 0;
+			}
+			.main {
+			   display: flex;
+			   justify-content: center;
+			   align-items: center;
+			   height: calc(100vh - 8rem);
+			}
+     
+			.login {
+			   margin: 20px;
+			   padding: 20px;
+			   background-color: #c2bcbc;
+			   border-radius: 10px;
+			   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			   text-align: center;
+			   flex: 1 1 300px;
+			   max-width: 300px;
+			}
+			
+			.login__title {
+			   font-size: 1.5rem;
+			   margin-bottom: 2rem;
+			}
+     
+			.login__form {
+			   display: flex;
+			   flex-direction: column;
+			}
+			.form-group {
+			   margin-bottom: 1.5rem;
+			 }
+			 
+			.form-label {
+			   display: block;
+			   font-size: 1.2rem;
+			   margin-bottom: 0.5rem;
+			}
+			 
+			.form-input {
+			   border: none;
+			   border-bottom: 1px solid #ccc;
+			   font-size: 1.2rem;
+			   padding: 0.5rem;
+			}
+			 
+			.login__button {
+			   background-color: #333;
+			   border: none;
+			   border-radius: 5px;
+			   color: #fff;
+			   cursor: pointer;
+			   font-size: 1.2rem;
+			   padding: 0.5rem;
+			   transition: background-color 0.2s ease;
+			   
+			}
+			 
+			.login__button:hover {
+			   background-color: #f4f4f4;
+			}
+			 
+			footer {
+				flex-shrink: 0;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				
+				
+			}
+			.footer {
+			   background-color: #333;
+			   color: #fff;
+			   padding: 1rem;
+			   text-align: center;
+			}
+			 
+			.footer__text {
+			   font-size: 0.8rem;
+			   margin: 0;
+			}
+
+			h1 {
+				margin: 0;
+				font-size: 36px;
+				text-align: center;
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+			}
+			
+			p {
+			
+				text-align: center;
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+			}
+
+			nav {
+				text-align: center;
+			}
+
+			nav ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			nav li {
+				display: inline-block;
+				margin: 0 10px;
+			}
+
+			nav a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			main {
+				display: flex;
+				flex-wrap: wrap;
+				padding: 20px;
+			}
+
+			section {
+				flex: 1;
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.juego {
+				margin: 20px;
+				padding: 20px;
+				background-color: #f4f4f4;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0,0,0,0.2);
+				text-align: center;
+				flex: 1 1 300px;
+				max-width: 300px;
+			}
+
+			.juego img {
+				max-width: 100%;
+			}
+
+			.juego h3 {
+				margin: 10px 0;
+			}
+
+			.juego p {
+				margin: 10px 0;
+			}
+
+			.juego .precio {
+				display: block;
+				font-size: 24px;
+				margin: 10px 0;
+			}
+
+			.juego button {
+				background-color: #333;
+				color: #fff;
+				border: none;
+				padding: 10px 20px;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+
+			.juego button:hover {
+				background-color: #666;
+			}
+
+			aside {
+				flex: 0 0 200px;
+				margin-left: auto;
+				padding: 20px;
+				background-color: #f4f4f4;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			}
+
+			aside h2 {
+				margin: 0 0 10px 0;
+			}
+
+			aside ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			aside li {
+				margin: 5px 0;
+			}
+
+			aside a {
+				color: #333;
+				text-decoration: none;
+			}
+
+			footer {
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+				text-align: center;
+			}
+
+			.icono-boton {
+  				width: 40px;
+  				height: 40px;
+			}
+
+			.icono-boton1 {
+  				width: 70px;
+  				height: 70px;
+			}
+
+			.menu {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+			}
+
+			.menu-toggle {
+				display: none;
+			}
+
+			.menu ul {
+				display: flex;
+				flex-direction: column;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.menu li {
+				margin: 5px 0;
+			}
+
+			.menu a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			@media screen and (max-width: 767px) {
+				main {
+					padding: 20px 0;
+				}
+				aside {
+					flex-basis: 100%;
+					margin: 20px 0 0 0;
+				}
+				.menu-toggle {
+					display: block;
+					background-color: #333;
+					color: #fff;
+					border: none;
+					padding: 10px 20px;
+					border-radius: 5px;
+					cursor: pointer;
+					transition: background-color 0.3s ease;
+				}
+				.menu-toggle:hover {
+					background-color: #666;
+				}
+				.menu ul {
+					display: none;
+					position: absolute;
+					top: 60px;
+					right: 20px;
+					background-color: #333;
+					padding: 20px;
+					border-radius: 5px;
+					box-shadow: 0 0 10px rgba(0,0,0,0.2);
+				}
+				.menu ul li {
+					margin: 10px 0;
+				}
+				.menu-toggle:checked + .menu ul {
+					display: flex;
+					flex-direction: column;
+				}
+			}
+		</style>
+
+		<br>
+		<div class="col-md-12 search">
+			<form method="get">
+				 <div id="custom-search-input">
+					  <div class="input-group col-md-12">
+						   <input type="text" class="form-control" placeholder="Buscar..." name = "buscar" value = "{{request.GET.buscar}}"> 
+						   <span class="input-group-list">
+								<i class="icon icon search"></i>
+								&nbsp; &nbsp;<button type="submit" class="btn btn-info">Buscar</button>
+						   </span>
+					  </div>
+				 </div>
+			</form>
+	   </div>
+		<br>
+
+		<main>
+			<section class="main">
+				{% csrf_token %}
+				
+				
+				{% if videojuegos %}
+					
+					{% for videojuegos in videojuegos %}
+						<div class="juego">
+							<h2>{{ videojuegos.nombre }}</h2>
+							<img src="{{videojuegos.foto.url}}" alt="{{videojuegos.nombre}}" width="200" height="200">
+							<p>{{ videojuegos.descripcion }}</p>
+							
+							<a href="/me_gusta/{{videojuegos.id}}" type="submit" ><img src="{% static 'img/like.png'%}" class="icono-boton1"></a>
+							<a href="/no_me_gusta/{{videojuegos.id}}" type="submit" ><img src="{% static 'img/dislike.png'%}" class="icono-boton" ></a>
+
+							<a href="/descargar_videojuego/{{videojuegos.id}}" type="submit" class="login__button">Descargar</a>
+				
+							<td>
+								<a href="/comentar/{{videojuegos.id}}" type="submit" ><img src="{% static 'img/comentario.png'%}" class="icono-boton"></a>
+								<a href="/delete_videojuego/{{videojuegos.id}}" type="submit" class="login__button" onclick="return confirm('El videojuego se eliminará')">Eliminar</a> 
+							</td>
+						</div>	
+						
+					{% endfor %}
+					
+				{% else %}
+					<p>No hay videojuegos disponibles.</p>
+				{% endif %}
+			</section>
+				
+		</main>
+		<br>
+		
+	</body>
+</html>

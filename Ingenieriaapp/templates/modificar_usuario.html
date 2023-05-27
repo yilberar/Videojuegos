@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sistema de Gestión de Videojuegos</title>
+             <meta charset="UTF-8">
+             <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+             <meta name="description" content="">
+             <meta name="keywords" content="">
+             <meta name="author" content="">
+             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+             
+             {% load static %}
+
+		<link rel="stylesheet" href="{% static 'CCS/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'CCS/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'CCS/aos.css' %}">
+		<link rel="stylesheet" href="{% static 'CCS/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'CCS/owl.theme.default.min.css' %}">
+		<link rel="stylesheet" href="{% static 'CCS/templatemo-digital-trend.css' %}">
+
+	</head>
+
+	<body>
+		<header class = "header">
+			<div class="header__title">
+				<h1 class="header__title">
+					Sistema de Gestión de Videojuegos</h1>
+			</div>
+			<nav class="text-right">
+				
+				{% if user.is_authenticated %}
+				<li class="nav-item dropdown">
+					 <div class="dropdown">
+						  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							   {{ user.username }}
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="/logout_user/">Cerrar Sección</a>
+						  </div>
+						</div>
+
+				 </li>                    
+					
+				{% endif %}
+   
+ 			</nav>
+ <br>
+				<div class="menu">
+					<li class="nav-item nav-link"><a href="#">MENÚ</a>
+						<ul>
+							<a href="/solicitud/" class="nav-item nav-link">Enviar Solicitud</a>
+						</ul>
+					</li> 
+				</div>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="/logout_user/" >Cerrar Sección</a>
+				</div>
+			</div>
+		</header>
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+
+			.header {
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+			}
+			
+			.header__title {
+				font-size: 36px;
+				margin: 0;
+			}
+			.main {
+			   display: flex;
+			   justify-content: center;
+			   align-items: center;
+			   height: calc(100vh - 8rem);
+			}
+     
+			.login {
+			   margin: 20px;
+			   padding: 20px;
+			   background-color: #c2bcbc;
+			   border-radius: 10px;
+			   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			   text-align: center;
+			   flex: 1 1 300px;
+			   max-width: 300px;
+			}
+			
+			.login__title {
+			   font-size: 1.5rem;
+			   margin-bottom: 2rem;
+			}
+     
+			.login__form {
+			   display: flex;
+			   flex-direction: column;
+			}
+			.form-group {
+			   margin-bottom: 1.5rem;
+			 }
+			 
+			.form-label {
+			   display: block;
+			   font-size: 1.2rem;
+			   margin-bottom: 0.5rem;
+			}
+			 
+			.form-input {
+			   border: none;
+			   border-bottom: 1px solid #ccc;
+			   font-size: 1.2rem;
+			   padding: 0.5rem;
+			}
+			 
+			.login__button {
+			   background-color: #333;
+			   border: none;
+			   border-radius: 5px;
+			   color: #fff;
+			   cursor: pointer;
+			   font-size: 1.2rem;
+			   padding: 0.5rem;
+			   transition: background-color 0.2s ease;
+			   
+			}
+			 
+			.login__button:hover {
+			   background-color: #f4f4f4;
+			}
+			 
+			 
+			.footer {
+			   background-color: #333;
+			   color: #fff;
+			   padding: 1rem;
+			   text-align: center;
+			}
+			 
+			.footer__text {
+			   font-size: 0.8rem;
+			   margin: 0;
+			}
+
+			h1 {
+				margin: 0;
+				font-size: 36px;
+				text-align: center;
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+			}
+			
+			p {
+			
+				text-align: center;
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+			}
+
+			nav {
+				text-align: center;
+			}
+
+			nav ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			nav li {
+				display: inline-block;
+				margin: 0 10px;
+			}
+
+			nav a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			main {
+				display: flex;
+				flex-wrap: wrap;
+				padding: 20px;
+			}
+
+			section {
+				flex: 1;
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.juego {
+				margin: 20px;
+				padding: 20px;
+				background-color: #f4f4f4;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0,0,0,0.2);
+				text-align: center;
+				flex: 1 1 300px;
+				max-width: 300px;
+			}
+
+			.juego img {
+				max-width: 100%;
+			}
+
+			.juego h3 {
+				margin: 10px 0;
+			}
+
+			.juego p {
+				margin: 10px 0;
+			}
+
+			.juego .precio {
+				display: block;
+				font-size: 24px;
+				margin: 10px 0;
+			}
+
+			.juego button {
+				background-color: #333;
+				color: #fff;
+				border: none;
+				padding: 10px 20px;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+
+			.juego button:hover {
+				background-color: #666;
+			}
+
+			aside {
+				flex: 0 0 200px;
+				margin-left: auto;
+				padding: 20px;
+				background-color: #f4f4f4;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			}
+
+			aside h2 {
+				margin: 0 0 10px 0;
+			}
+
+			aside ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			aside li {
+				margin: 5px 0;
+			}
+
+			aside a {
+				color: #333;
+				text-decoration: none;
+			}
+
+			footer {
+				background-color: #333;
+				color: #fff;
+				padding: 20px;
+				text-align: center;
+			}
+
+			.menu {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+			}
+
+			.menu-toggle {
+				display: none;
+			}
+
+			.menu ul {
+				display: flex;
+				flex-direction: column;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.menu li {
+				margin: 5px 0;
+			}
+
+			.menu a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			@media screen and (max-width: 767px) {
+				main {
+					padding: 20px 0;
+				}
+				aside {
+					flex-basis: 100%;
+					margin: 20px 0 0 0;
+				}
+				.menu-toggle {
+					display: block;
+					background-color: #333;
+					color: #fff;
+					border: none;
+					padding: 10px 20px;
+					border-radius: 5px;
+					cursor: pointer;
+					transition: background-color 0.3s ease;
+				}
+				.menu-toggle:hover {
+					background-color: #666;
+				}
+				.menu ul {
+					display: none;
+					position: absolute;
+					top: 60px;
+					right: 20px;
+					background-color: #333;
+					padding: 20px;
+					border-radius: 5px;
+					box-shadow: 0 0 10px rgba(0,0,0,0.2);
+				}
+				.menu ul li {
+					margin: 10px 0;
+				}
+				.menu-toggle:checked + .menu ul {
+					display: flex;
+					flex-direction: column;
+				}
+			}
+		</style>
+
+		<br>
+		<section class="main">
+            <!-- onsubmit='return Validar();' -->
+            <div class="login">
+				<form method="post">
+					{% csrf_token %}
+					<div class="form-group">
+					  <label for="usuario">Usuario:</label>
+					  <input type="text" name="usuario" value="{{ usuario.username }}" class="form-control">
+					</div>
+					<div class="form-group">
+					  <label for="nombre">Nombre:</label>
+					  <input type="text" name="nombre" value="{{ usuario.first_name }}" class="form-control">
+					</div>
+					<div class="form-group">
+					  <label for="apellidos">Apellidos:</label>
+					  <input type="text" name="apellidos" value="{{ usuario.last_name }}" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="is_administrador">Administrador:</label>
+						<div class="form-check">
+						  <input type="radio" name="is_administrador" value="True" {% if usuario.is_administrador %}checked{% endif %} class="form-check-input">
+						  <label class="form-check-label">Sí</label>
+						  
+						</div>
+						<div class="form-check">
+							<input type="radio" name="is_administrador" value="False" {% if usuario.is_administrador %}checked{% endif %} class="form-check-input">
+							<label class="form-check-label">No</label>
+						  </div>
+					</div>
+					<div class="form-group">
+					  <label for="contraseña">Contraseña:</label>
+					  <input type="password" name="contraseña" class="form-control">
+					</div>
+					<button type="submit" value="Aceptar" class="login__button"  name="submit">Guardar Cambios</button>
+				  </form>
+				  
+					
+					
+							
+				
+
+			</div>
+			
+		</section>
+		<br>
+
+		
+		<footer>
+			<p>Tienda de videojuegos &copy; 2023</p>
+		</footer>
+	</body>
+</html>

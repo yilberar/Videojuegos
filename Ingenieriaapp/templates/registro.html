@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <title>Sistema de Gestión de Videojuegos</title>
+             <meta charset="UTF-8">
+             <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+             <meta name="description" content="">
+             <meta name="keywords" content="">
+             <meta name="author" content="">
+             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+             
+             {% load static %}
+
+            
+             <!-- MAIN CSS -->
+    </head>
+    <body>
+        <header class="header">
+          
+          <div class="header__title">
+                
+            <h1 class="header__title">
+               Sistema de Gestión de Videojuegos</h1>
+                   
+          </div>
+         
+        </header>
+  
+        
+        <section class="main">
+            <!-- onsubmit='return Validar();' -->
+            <div class="login">
+
+                <div class="form-group">
+                    <h2 class="login__title">Registro de usuario</h2>
+                    <form class="login__form" method="POST" action="">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div >
+                    <p>{{ field.label }}: <br> {{ field }}</p> 
+        
+                    {% for error in field.errors %}
+                        <small style="color: red">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                        <input class="login__button" type="submit" value="Registrar">
+                
+                        <!-- <button name="Registrar" class="login__button" id="submit-button" type="submit"  data-submit="...Sending">Registrar</button> -->
+                        <p class="message">¿Ya tienes una cuenta? <a href="/">iniciar Sesión</a></p>
+                    </form>
+                </div> 
+            </div>
+        </section>
+      
+              <!-- SCRIPTS -->
+        <footer class="footer">
+            <p>Tienda de videojuegos &copy; 2023</p>
+        </footer>
+    </body>
+    <style>
+   
+        /* box-sizing: border-box;
+       */
+       
+       body {
+         font-family: 'Open Sans', sans-serif;
+         margin: 0;
+         padding: 0;
+       }
+       
+       
+       .header {
+         background-color: #333;
+         color: #fff;
+         padding: 20px;
+         text-align: center;
+       }
+       
+       .header__title {
+         font-size: 36px;
+         margin: 0;
+       }
+       
+       .main {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: calc(100vh - 8rem);
+       }
+       
+       .login {
+         margin: 20px;
+         padding: 20px;
+         background-color: #c2bcbc;
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(0,0,0,0.2);
+         text-align: center;
+         flex: 1 1 300px;
+         max-width: 300px;
+       }
+       
+       .login__title {
+         font-size: 1.5rem;
+         margin-bottom: 2rem;
+       }
+       
+       .login__form {
+         display: flex;
+         flex-direction: column;
+       }
+       
+       .form-group {
+         margin-bottom: 1.5rem;
+       }
+       
+       .form-label {
+         display: block;
+         font-size: 1.2rem;
+         margin-bottom: 0.5rem;
+       }
+       
+       .form-input {
+         border: none;
+         border-bottom: 1px solid #ccc;
+         font-size: 1.2rem;
+         padding: 0.5rem;
+       }
+       
+       .login__button {
+         background-color: #333;
+         border: none;
+         border-radius: 5px;
+         color: #fff;
+         cursor: pointer;
+         font-size: 1.2rem;
+         padding: 0.5rem;
+         transition: background-color 0.2s ease;
+         
+       }
+       
+       .login__button:hover {
+         background-color: #f4f4f4;
+       }
+       
+       
+       .footer {
+         background-color: #333;
+         color: #fff;
+         padding: 1rem;
+         text-align: center;
+       }
+       
+       .footer__text {
+         font-size: 0.8rem;
+         margin: 0;
+       }
+    </style>
+</html>
